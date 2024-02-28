@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  DataGrid主样式  -->
+    <Style x:Key="DataGridStyle" TargetType="DataGrid">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="Margin" Value="0,0,6,0" />
+        <Setter Property="SelectionMode" Value="Extended" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="CanUserDeleteRows" Value="False" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <!--  标题样式  -->
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Border
+                        MinHeight="35"
+                        Padding="3"
+                        Background="#ECECEC"
+                        BorderBrush="#DBDDDF"
+                        BorderThickness="0,0,1,1">
+                        <ContentPresenter
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  行  -->
+    <Style TargetType="DataGridRow">
+        <Setter Property="Height" Value="35" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#C7CCD7" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  单元格式  -->
+    <Style TargetType="DataGridCell">
+        <Setter Property="Background" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,135 @@
+﻿<Window
+    x:Class="SupermarketManagementSystem.View.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SupermarketManagementSystem.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    x:Name="loginView"
+    Title="用户登录"
+    Width="600"
+    Height="450"
+    Background="{Binding AppData.Background}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=LoginViewModel}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+     <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="35"
+            Foreground="{Binding AppData.Foreground}"
+            Text="{Binding AppData.FullTitle}">
+            <TextBlock.Effect>
+                <DropShadowEffect />
+            </TextBlock.Effect>
+        </TextBlock>
+        <!--  用户名  -->
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <DockPanel>
+                <TextBlock
+                    Width="60"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Foreground="{Binding AppData.Foreground}"
+                    Text="用户名:" />
+                <TextBox
+                    Width="200"
+                    Height="25"
+                    Margin="15,0,0,0"
+                    Text="{Binding Member.NameEx, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+        </StackPanel>
+        <!--  密码  -->
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <DockPanel>
+                <TextBlock
+                    Width="60"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Foreground="{Binding AppData.Foreground}"
+                    Text="密   码:" />
+                <TextBox
+                    Width="200"
+                    Height="25"
+                    Margin="15,0,0,0"
+                    Text="{Binding Member.PasswordEx, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+        </StackPanel>
+        <!--  类别  -->
+        <StackPanel
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <DockPanel>
+                <TextBlock
+                    Width="60"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Foreground="{Binding AppData.Foreground}" 
+                    Text="类    别:" />
+                <RadioButton Width="80" Height="25" Margin="25,0,0,0" Content="管理员" FontSize="16" Foreground="{Binding AppData.Foreground}" IsChecked="True" Tag="管理员">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Checked">
+                            <i:InvokeCommandAction Command="{Binding CheckedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=RadioButton}}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </RadioButton>
+                <RadioButton Width="90" Height="25" Margin="25,0,0,0" Content="顾客" FontSize="16" Foreground="{Binding AppData.Foreground}" Tag="顾客">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Checked">
+                            <i:InvokeCommandAction Command="{Binding CheckedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=RadioButton}}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </RadioButton>
+            </DockPanel>
+        </StackPanel>
+        <!--  按钮  -->
+        <StackPanel
+            Grid.Row="5"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button
+                Width="60"
+                Height="25"
+                VerticalAlignment="Center"
+                Content="注册" />
+            <Button
+                Width="60"
+                Height="25"
+                Margin="40,0,40,0"
+                VerticalAlignment="Center"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding ElementName=loginView}"
+                Content="登录" />
+            <Button
+                Width="60"
+                Height="25"
+                VerticalAlignment="Center"
+                Command="{Binding ExitCommand}"
+                CommandParameter="{Binding ElementName=loginView}"
+                Content="退出" />
+        </StackPanel>
+    </Grid>
+</Window>

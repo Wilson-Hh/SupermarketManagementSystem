@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="shoppingdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="TelePhone" Type="varchar" MaxLength="50" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="Level" Type="varchar" MaxLength="50" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="OrderState" Type="varchar" MaxLength="255" />
+          <Property Name="OrderDate" Type="datetime" Precision="0" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="PayDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="orderdetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="Image" Type="mediumblob" />
+          <Property Name="Unit" Type="varchar" MaxLength="255" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="Category" Type="varchar" MaxLength="255" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Telephone" Type="varchar" MaxLength="255" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="InsertDate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="shoppingdbModelStoreContainer">
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="shoppingdb" store:Type="Tables" />
+          <EntitySet Name="member" EntityType="Self.member" Schema="shoppingdb" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="shoppingdb" store:Type="Tables" />
+          <EntitySet Name="orderdetail" EntityType="Self.orderdetail" Schema="shoppingdb" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="shoppingdb" store:Type="Tables" />
+          <EntitySet Name="stock" EntityType="Self.stock" Schema="shoppingdb" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="shoppingdb" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="shoppingdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="shoppingdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customer" EntityType="shoppingdbModel.customer" />
+          <EntitySet Name="member" EntityType="shoppingdbModel.member" />
+          <EntitySet Name="order" EntityType="shoppingdbModel.order" />
+          <EntitySet Name="orderdetail" EntityType="shoppingdbModel.orderdetail" />
+          <EntitySet Name="product" EntityType="shoppingdbModel.product" />
+          <EntitySet Name="stock" EntityType="shoppingdbModel.stock" />
+          <EntitySet Name="supplier" EntityType="shoppingdbModel.supplier" />
+        </EntityContainer>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TelePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="OrderState" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" />
+          <Property Name="InsertDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="orderdetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Quantity" Type="Single" />
+          <Property Name="Price" Type="Decimal" />
+          <Property Name="InsertDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Unit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" />
+          <Property Name="Quantity" Type="Single" />
+          <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="InsertDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Single" />
+          <Property Name="InsertDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Telephone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="InsertDate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="shoppingdbModelStoreContainer" CdmEntityContainer="shoppingdbEntities">
+          <EntitySetMapping Name="customer">
+            <EntityTypeMapping TypeName="shoppingdbModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="TelePhone" ColumnName="TelePhone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="member">
+            <EntityTypeMapping TypeName="shoppingdbModel.member">
+              <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order">
+            <EntityTypeMapping TypeName="shoppingdbModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderdetail">
+            <EntityTypeMapping TypeName="shoppingdbModel.orderdetail">
+              <MappingFragment StoreEntitySet="orderdetail">
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="shoppingdbModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock">
+            <EntityTypeMapping TypeName="shoppingdbModel.stock">
+              <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplier">
+            <EntityTypeMapping TypeName="shoppingdbModel.supplier">
+              <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
